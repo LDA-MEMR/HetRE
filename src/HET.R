@@ -1,0 +1,27 @@
+############################################################################
+# Implementation of HET model
+############################################################################
+
+HET <- function(data, n, q, sigma.error = 0, beta, alpha0 =1.4, alpha = c(0,0,0), delta, lambda){
+  #generate data
+  n<-n
+  q<-q
+  data <- data
+  
+  # Initial parameters for M-H algorithm
+  mean.x <- 1
+  var.x <- 2
+  mu_f <- (mean.x*sigma.error^2 + data$Wij*var.x)/(sigma.error^2 + var.x)
+  var_f <- (sigma.error^2 * var.x) /(sigma.error^2 + var.x)
+  theta.old <- c(beta, delta, lambda)
+  alpha.old <- c(alpha0,alpha)
+  
+  estimate <- MCEM.HET(n, q, data=data, M=1000, tol = 0.05, theta.old=theta.old, burnin = 500, alpha.old=alpha.old,
+                        mu_f = mu_f, var_f = var_f)
+  
+  return(estimate = estimate)
+}
+
+
+
+

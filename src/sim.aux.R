@@ -8,11 +8,26 @@
 ############################################################################
 # Function for generating random effects by proposed approach (using MCD)
 ############################################################################
-
-# n= Sample size for data generation
-# q= Number for follow-up for each individual
-# delta = GARP parameters
-# lambda = IV parameters
+#' @title Function for generating random effects using MCD
+#'
+#' @description This function generate random effects.
+#'
+#' @param n sample size
+#' @param q number for follow-up for each individual
+#' @param delta GARP parameters
+#' @param lambda IV parameters
+#' @param Zi subject specific variable
+#' @return A list
+#' @examples
+#' n=10 
+#' q=5
+#' delta=c(0.5, 0.3)
+#' lambda=c(0.1, 0.2)
+#' Zi = matrix(rep(sample(c(0,1), n, replace = TRUE),q),n,q)
+#' library(mvtnorm)
+#' uu.sim = u.sim.HET(n,q,delta = delta, Zi=Zi, lambda = lambda)
+#' head(uu.sim)
+#'@export
 
 u.sim.HET <- function(n,q, delta, Zi, lambda){
   u.all <- matrix(NA,n,q)
@@ -41,13 +56,6 @@ u.sim.HET <- function(n,q, delta, Zi, lambda){
   return(list(U.all=U.all,u.all=u.all,I=I))
 }
 
-# Example:
-#n=10; q=3
-#delta=c(0.5, 0.3)
-#lambda=c(0.1, 0.2)
-#Zi = matrix(rep(sample(c(0,1), n, replace = TRUE),q),n,q)
-#uu.sim = u.sim.HET(n,q,delta = delta, Zi=Zi, lambda = lambda)
-
 
 ############################################################################ 
 # Function to Simulate longitudinal data using heterogeneous RE model
@@ -70,7 +78,7 @@ u.sim.HET <- function(n,q, delta, Zi, lambda){
 #' library(mvtnorm)
 #' n = 50
 #' q = 5
-#' sigma.error = 0.4
+#' sigma.error = 0.5
 #' beta = c(-5.7,1.5,-0.75,1)
 #' alpha0 = 1.4 #generate 20% missing values
 #' alpha = c(0,0,0)
@@ -126,17 +134,6 @@ R <- matrix(rbinom(n*q,1,p.miss),n*q,1,byrow=T)
 for (i in 1:(n*q)){if (R[i,]==0) R[i,]=NA}
 Y.obs <- R*ym  # observed Y including missing values
 
-############################### Alternative way #####################################
-
-# Probability of observing
-#p.miss <- 1/(1+ exp(- alpha0- alpha[1]*ym[1:(n*q-n),]-alpha[2]*ym[1:(n*q-n),]-alpha[3]*Wij))  
-# same as: exp(alpha)/1+exp(alpha)
-#R <- matrix(rbinom(n*q,1,p.miss),n*q,1,byrow=T)
-##R <- cbind(1,R) # if missing from 2nd follow up
-#for (i in 1:(n*q)){if (R[i,]==0) R[i,]=NA}
-#YM <- R*yvector  # observed Y including missing values
-##################################################################################
-
 data.sim <- data.frame(id, y.true, p.y, Xij, eij, Wij, Zij, Zistar, R, Y.obs)
 return(data.sim)
 }
@@ -170,12 +167,13 @@ return(data.sim)
 #' alpha0 = 1.4 #generate 20% missing values
 #' alpha = c(0,1,-1)
 #' lambda = c(0.1, 0.2)
-#' data = sim.data.HOM(n=n,q=q,sigma.error=sigma.error,beta=beta,alpha0=alpha0,alpha=alpha,lambda=lambda)
+#' varu=1.2
+#' data = sim.data.HOM(n=n,q=q,sigma.error=sigma.error,beta=beta,varu=varu,alpha0=alpha0,alpha=alpha,lambda=lambda)
 #' head(data)
 #' @export
 
 # Data generation
-sim.data.HOM <- function(n=100, q=5, sigma.error=0, beta, varu, alpha0=1.4, alpha, lambda){
+sim.data.HOM <- function(n=100, q=5, sigma.error=0, beta, varu=1.2, alpha0=1.4, alpha, lambda){
   
   ## Simulate the true model
   id <- rep(c(1:n), rep(q, n))
@@ -226,16 +224,6 @@ sim.data.HOM <- function(n=100, q=5, sigma.error=0, beta, varu, alpha0=1.4, alph
   R <- matrix(rbinom(n*q,1,p.miss),n*q,1,byrow=T)
   for (i in 1:(n*q)){if (R[i,]==0) R[i,]=NA}
   Y.obs <- R*ym  # observed Y including missing values
-  
-  ############################### Alternative way #####################################
-  # Probability of observing
-  #p.miss <- 1/(1+ exp(- alpha0- alpha[1]*ym[1:(n*q-n),]-alpha[2]*ym[1:(n*q-n),]-alpha[3]*Wij))  
-  # same as: exp(alpha)/1+exp(alpha)
-  #R <- matrix(rbinom(n*q,1,p.miss),n*q,1,byrow=T)
-  ##R <- cbind(1,R) # if missing from 2nd follow up
-  #for (i in 1:(n*q)){if (R[i,]==0) R[i,]=NA}
-  #YM <- R*yvector  # observed Y including missing values
-  ##################################################################################
   
   data.sim <- data.frame(id, y.true, p.y, Xij, eij, Wij, Zij, Zistar, R, Y.obs)
   return(data.sim)
