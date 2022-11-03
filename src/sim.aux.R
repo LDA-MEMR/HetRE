@@ -232,29 +232,3 @@ sim.data.HOM <- function(n=100, q=5, sigma.error=0, beta, varu=1.2, alpha0=1.4, 
 
 
 
-
-# Data Generation
-
-#library(mvtnorm)
-#n = 100
-#q = 5
-#sigma.error = 0.4
-#beta = c(-5.7,1.5,-0.75,1)
-#alpha0 = 1.4 #generate 20% missing values
-#alpha = c(0,0,0) #MCAR
-#alpha = c(1,0,0) #MAR
-#alpha = c(0,1,1) #MNAR
-#delta = c(0.5, 0.3)
-#lambda = c(0.1, 0.2)
-#set.seed(2022)
-#data = sim.data.HET(n=n,q=q,sigma.error=sigma.error,beta=beta,alpha0=alpha0,alpha=alpha,delta=delta,lambda=lambda)
-#head(data)
-
-#save(data, file="simdataHET_MCAR_q5.Rdata")
-#save(data, file="simdataHET_MAR_q5.Rdata")
-#save(data, file="simdataHET_MNAR_q5.Rdata")
-
-#sum(is.na(data$Y.obs))/(n*q)
-#id.na<-which(is.na(data$Y.obs))
-#data$Y.obs[id.na] <- rbinom(length(id.na),1,0.5)
-
