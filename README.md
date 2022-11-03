@@ -4,7 +4,7 @@ This repository contains code to implement the methodology discussed in "A heter
 
 **Hoque, M. E., Torabi, M., and Acar, E. F. (2022). A heterogeneous random effects covariance matrix in longitudinal data with missing responses and mismeasured covariates.**
 
-The folder `src` contains all functions (.R) requires to implement the methods, and the folder `test` provides scripts to run the simulations from the article.
+The folder `src` contains all functions (.R) requires to implement the methods, and the folder `test` provides scripts to run the simulations for heteregeneous model from the article.
 
 ## Contact
 
