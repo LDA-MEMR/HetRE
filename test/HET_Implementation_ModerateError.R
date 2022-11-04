@@ -50,11 +50,7 @@ print(estimate)
 
 
   
-# Load the auxiliary functions located in 'R' folder which is
-# needed to generate data
-#source(here::here("SCRIPT", "R", "LDvine.aux.R"))
-#source(/src/simulation_functions.R"))
-
+# Load the auxiliary functions located in 'src' folder
 #source("src/sim.aux.R")
 #source("src/M-H_algorithm_HET.R")
 #source("src/MCEM_HET.R")
