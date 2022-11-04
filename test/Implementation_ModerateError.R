@@ -15,6 +15,15 @@ source("M-H_algorithm_HOM.R")
 source("MCEM_HOM.R")
 source("HOM.R")
 
+# Load the auxiliary functions located in 'R' folder which is
+#source("src/sim.aux.R")
+#source("src/M-H_algorithm_HET.R")
+#source("src/MCEM_HET.R")
+#source("src/HET.R")
+#source("src/M-H_algorithm_HOM.R")
+#source("src/MCEM_HOM.R")
+#source("src/HOM.R")
+
 ###########################################################################
 # An Illustration of analysis with simulated data
 ###########################################################################
@@ -75,15 +84,7 @@ print(estimate)
 
 
   
-# Load the auxiliary functions located in 'R' folder which is
-# needed to generate data
-#source(here::here("SCRIPT", "R", "LDvine.aux.R"))
-#source(/src/simulation_functions.R"))
 
-#source("src/sim.aux.R")
-#source("src/M-H_algorithm_HET.R")
-#source("src/MCEM_HET.R")
-#source("src/HET.R")
 
 
   
