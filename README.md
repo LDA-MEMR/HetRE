@@ -10,7 +10,7 @@ To start you need to open the project file (LDvine.Rproj) in RStudio which will 
 
 ## References
 
-**Hoque, M. E., Torabi, M., and Acar, E. F. (2022). A heterogeneous random effects covariance matrix in longitudinal data with missing responses and mismeasured covariates.**
+- Hoque, M. E., Torabi, M., and Acar, E. F. (2022). A heterogeneous random effects covariance matrix in longitudinal data with missing responses and mismeasured covariates.
 
 ## Contact
 
