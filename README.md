@@ -6,7 +6,7 @@ The folder `src` contains all functions (.R) requires to implement the methods, 
 
 ## First time only: Setting up the directory
 
-To start you need to open the project file (LDvine.Rproj) in RStudio which will bring RStudio to the root directory.
+To start you need to open the project file (HetRE.Rproj) in RStudio which will bring RStudio to the root directory.
 
 ## References
 
