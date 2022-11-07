@@ -6,23 +6,23 @@
 library(mvtnorm)
 
 # Load source files
-source("sim.aux.R")
-source("M-H_algorithm_HET.R")
-source("MCEM_HET.R")
-source("HET.R")
+#source("sim.aux.R")
+#source("M-H_algorithm_HET.R")
+#source("MCEM_HET.R")
+#source("HET.R")
+#source("M-H_algorithm_HOM.R")
+#source("MCEM_HOM.R")
+#source("HOM.R")
 
-source("M-H_algorithm_HOM.R")
-source("MCEM_HOM.R")
-source("HOM.R")
+# Load the auxiliary functions located in 'src' folder
+source("src/sim.aux.R")
+source("src/M-H_algorithm_HET.R")
+source("src/MCEM_HET.R")
+source("src/HET.R")
 
-# Load the auxiliary functions located in 'R' folder which is
-#source("src/sim.aux.R")
-#source("src/M-H_algorithm_HET.R")
-#source("src/MCEM_HET.R")
-#source("src/HET.R")
-#source("src/M-H_algorithm_HOM.R")
-#source("src/MCEM_HOM.R")
-#source("src/HOM.R")
+source("src/M-H_algorithm_HOM.R")
+source("src/MCEM_HOM.R")
+source("src/HOM.R")
 
 ###########################################################################
 # An Illustration of analysis with simulated data
